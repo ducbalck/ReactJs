@@ -8,25 +8,21 @@ import {
   CardTitle,
 } from "reactstrap";
 
-class DishDetail extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    if (this.props.dish != null) {
-      return (
-        <div className="container">
-          <div className="row">
-            <RenderDish dish={this.props.dish} />
-            <RenderComments dish={this.props.dish} />
-          </div>
+const  DishDetail = (props) => {
+  
+  if (props.dish != null) {
+    return (
+      <div className="container">
+        <div className="row">
+          <RenderDish dish={props.dish} />
+          <RenderComments dish={props.dish} />
         </div>
-      );
-    } else return <div></div>;
-  }
-}
+      </div>
+    );
+  } else return <div></div>;
 
+
+}
 function RenderDish({ dish }) {
   if (dish != null) {
     return (
