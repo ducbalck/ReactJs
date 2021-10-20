@@ -8,6 +8,8 @@ import {
   CardTitle,
 } from "reactstrap";
 
+
+
 const  DishDetail = (props) => {
   
     if (props.dish != null) {
@@ -41,22 +43,22 @@ function RenderDish({ dish }) {
 }
 
 function RenderComments({ dish }) {
-    if (dish != null) {
-      return (
-        <div className="col-12 col-md-5 m-1">
-            <h4>Comments</h4>
-          {dish.comments.map((comment) => {
-            return (
-                
-              <div>
-                <p>{comment.comment}</p>
-                <p>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
-              </div>
-            );
-          })}
-        </div>
-      );
-    } else return null;
-  }
+  if (dish != null) {
+    return (
+      <div className="col-12 col-md-5 m-1">
+          <h4>Comments</h4>
+        {dish.comments.fliter((comment) => {
+          return (
+              
+            <div>
+              <p>{comment.comment}</p>
+              <p>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+            </div>
+          );
+        })}
+      </div>
+    );
+  } else return null;
+}
   export default DishDetail;
   
