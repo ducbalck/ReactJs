@@ -1,38 +1,59 @@
-.App {
-  text-align: center;
+
+
+@import "font-awesome";
+.row-header{
+  margin:0px auto;
+  padding:0px auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.row-content {
+  margin:0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height:400px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.footer{
+  background-color: #0fb3e6;
+  margin:0px auto;
+  padding: 20px 0px 20px 0px;
+  
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+address{
+  font-size:80%;
+  margin:0px;
+  color:#0f0f0f;
+}
+
+.navbar-dark {
+  background-color: #181bf8 ;
+}
+
+.body {
+  min-height: 500px;
+}
+.btn-social-icon{
+ height: 40px;width: 40px;
+}
+.btn-google{
+  background-color: red;
+}
+.btn-facebook{
+background-color: royalblue;
+}
+.btn-linkedin{
+background-color: rgb(15, 110, 148);
+}
+.btn-twitter{
+background-color: rgb(167, 189, 207);
+}
+.fa-google-plus , .fa-facebook, .fa-linkedin ,.fa-twitter ,.fa-youtube {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.fa-envelope-o{
+  color: black;
 }
