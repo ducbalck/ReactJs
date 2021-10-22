@@ -5,7 +5,7 @@ import { DEPARTMENTS } from "../shared/staffs";
 
 const Phongban = (props) => {
   
-  const departments = props.departments?.map((department, index) => (
+  const departments = props.departments.map((department, index) => (
     <div key={index.toString()} className="col-lg-4 col-sm-6 col-12 mt-2" >
       <Card >
         <CardTitle><div>{department.name}</div></CardTitle>

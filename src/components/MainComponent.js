@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import StaffList from "./StaffListComponent";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
@@ -30,6 +30,14 @@ class Main extends Component {
         />
       );
     };
+    const seach = ({match})=>{
+      return <StaffDetail staff={this.staff.filter(
+        (staff) => staff.name === (match.useState()))
+        
+      
+      }
+      />
+    };
 
     return (
       <>
@@ -48,11 +56,13 @@ class Main extends Component {
                 <Phongban departments={this.state.departments} />
               )}
             />
-            {/* gọi Component ở đây mà ko thấy truyền Props vào. sao trong kia em lấy đc */}
+            
             <Route
               path="/bangluong"
               component={() => <Bangluong staffs={this.state.staffs} />}
             />
+            <Route exact path="/nhanvien/:staffName" component={seach} />
+            
             <Redirect to="/nhanvien" />
           </Switch>
         </div>
