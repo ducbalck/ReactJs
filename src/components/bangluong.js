@@ -8,7 +8,7 @@ const Bangluong= (props)=>{
         return(
            
             <div className="col-lg-4 col-sm-6 col-12 mt-2 ">
-                <Card>
+                <Card key={staff.id}>
                 <CardTitle>{staff.name}</CardTitle>
                 <CardText className="ml-3">Mã nhân viên : {(staff.id)} </CardText>
                 <CardText className="ml-3">Hệ số lương :{(staff.salaryScale).toFixed(0)}</CardText>

@@ -30,15 +30,21 @@ class Main extends Component {
         />
       );
     };
-    const seach = ({match})=>{
-      return <StaffDetail staff={this.staff.filter(
-        (staff) => staff.name === (match.useState()))
-        
-      
-      }
-      />
-    };
+    // const Seach = ({match})=>{
+    //   return <onSearch  staff={
+    //     this.state.staffs.filter(
+    //       (staff) => staff.name === parseInt(match.params.staffName, 10)
+    //     )[0]
 
+    //   }
+    //   />
+    // };
+
+    // chạy đi em
+    // state là gì, props là gì
+    // react re-render component khi nào?
+    // class component vs function component khác nhau như nào?
+    // hook là gì? và các hook api của react useState(), useEffect()
     return (
       <>
         <Header />
@@ -47,7 +53,9 @@ class Main extends Component {
             <Route
               exact
               path="/nhanvien"
-              component={() => <StaffList staffs={this.state.staffs} />}
+              component={() => (
+                <StaffList staffs={this.state.staffs} />
+              )}
             />
             <Route exact path="/nhanvien/:staffId" component={StaffWithId} />
             <Route
@@ -56,13 +64,17 @@ class Main extends Component {
                 <Phongban departments={this.state.departments} />
               )}
             />
-            
+
             <Route
               path="/bangluong"
               component={() => <Bangluong staffs={this.state.staffs} />}
             />
-            <Route exact path="/nhanvien/:staffName" component={seach} />
-            
+            <Route
+              exact
+              path="/nhanvien/:staffName"
+              component={() => <onSearch staffs={this.state.staffs} />}
+            />
+
             <Redirect to="/nhanvien" />
           </Switch>
         </div>

@@ -5,7 +5,7 @@ import dateFormat from 'dateformat';
 import { Link } from 'react-router-dom';
 
     const  StaffDetail = (props) => {
-  
+        
         if (props.staff != null) {
             
             

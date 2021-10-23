@@ -1,5 +1,4 @@
-import React, { Component, useState } from "react";
-
+import React, { Component, useCallback, useEffect, useState } from "react";
 import {
   Card,
   CardImg,
@@ -14,10 +13,24 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-import dateFormat from "dateformat";
 
-function RenderStaffItem({ staff, onClick }) {
-  return (
+const StaffList = (props) => {
+  const [textSearch, setTextSearch] = useState("");
+  console.log("staffs", props.staffs);
+  const [staffs, setStaffs] = useState([]);
+
+  useEffect(() => {
+    setStaffs(props.staffs);
+  }, []);
+
+  const search = () => {
+    // viết trong này
+    const tim = props.staffs.filter((item) => item.name.toLowerCase().match(textSearch.toLowerCase()));
+    // cập nhật state
+    setStaffs(textSearch ? tim : props.staffs);
+  };
+
+  const renderStaffItem = (staff) => (
     <Card>
       <Link to={`/nhanvien/${staff.id}`}>
         <CardImg width="100%" src={staff.image} alt={staff.name} />
@@ -25,18 +38,9 @@ function RenderStaffItem({ staff, onClick }) {
       <CardTitle className=" text-center">{staff.name}</CardTitle>
     </Card>
   );
-}
 
-const StaffList = (props) => {
-  const [textSearch, setTextSearch] = useState("");
-  const menu = props.staffs.map((staff) => {
-    return (
-      <div className="col-6 col-lg-2 col-sm-4 mt-1" key={staff.id}>
-        <RenderStaffItem staff={staff} onClick={props.onClick} />
-      </div>
-    );
-  });
-console.log(useState);
+ 
+
   return (
     <div className="container">
       <div className="row mt-3">
@@ -50,17 +54,28 @@ console.log(useState);
         <div className="col-md-6 offset-3">
           <Row className="form-group">
             <Col md={10}>
-              <Input type="text" className="form-control" onChange={e => setTextSearch(e.target.value)}></Input>
+              <Input
+                type="text"
+                className="form-control"
+                onChange={(e) => setTextSearch(e.target.value)}
+              ></Input>
             </Col>
             <Col md={2}>
-              <Button color="primary" type="button" onClick={() => props.onSearch(textSearch)}>
+              {/* em đang gọi onSearch ở staff lists, vạy em đã truyền onSearch vào staff lít chưa? */}
+              <Button color="primary" type="button" onClick={search}>
                 Tìm
               </Button>
             </Col>
           </Row>
         </div>
       </div>
-      <div className="row">{menu}</div>
+      <div className="row">
+        {staffs.map((staff) => (
+          <div className="col-6 col-lg-2 col-sm-4 mt-1" key={staff.id}>
+            {renderStaffItem(staff)}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
