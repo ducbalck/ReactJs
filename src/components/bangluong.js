@@ -1,5 +1,5 @@
-import React, { Component } from "react" ;
-import { Breadcrumb, BreadcrumbItem,Card,CardFooter,CardImgOverlay,CardText,CardTitle } from 'reactstrap';
+import React from "react" ;
+import { Breadcrumb, BreadcrumbItem,Card,CardFooter,CardText,CardTitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 

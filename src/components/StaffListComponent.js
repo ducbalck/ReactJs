@@ -1,8 +1,8 @@
-import React, { Component, useCallback, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import {
   Card,
   CardImg,
-  CardImgOverlay,
+ 
   CardTitle,
   Breadcrumb,
   BreadcrumbItem,
@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 
 const StaffList = (props) => {
   const [textSearch, setTextSearch] = useState("");
-  console.log("staffs", props.staffs);
+  
   const [staffs, setStaffs] = useState([]);
 
   useEffect(() => {
@@ -24,9 +24,9 @@ const StaffList = (props) => {
   }, []);
 
   const search = () => {
-    // viết trong này
+    
     const tim = props.staffs.filter((item) => item.name.toLowerCase().match(textSearch.toLowerCase()));
-    // cập nhật state
+    
     setStaffs(textSearch ? tim : props.staffs);
   };
 
@@ -51,7 +51,7 @@ const StaffList = (props) => {
             </BreadcrumbItem>
           </Breadcrumb>
         </div>
-        <div className="col-md-6 offset-3">
+        <div className="col-md-6 col-12 offset-3">
           <Row className="form-group">
             <Col md={10}>
               <Input
@@ -61,7 +61,7 @@ const StaffList = (props) => {
               ></Input>
             </Col>
             <Col md={2}>
-              {/* em đang gọi onSearch ở staff lists, vạy em đã truyền onSearch vào staff lít chưa? */}
+              
               <Button color="primary" type="button" onClick={search}>
                 Tìm
               </Button>

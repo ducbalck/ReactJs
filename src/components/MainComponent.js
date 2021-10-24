@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import StaffList from "./StaffListComponent";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
@@ -30,21 +30,7 @@ class Main extends Component {
         />
       );
     };
-    // const Seach = ({match})=>{
-    //   return <onSearch  staff={
-    //     this.state.staffs.filter(
-    //       (staff) => staff.name === parseInt(match.params.staffName, 10)
-    //     )[0]
 
-    //   }
-    //   />
-    // };
-
-    // chạy đi em
-    // state là gì, props là gì
-    // react re-render component khi nào?
-    // class component vs function component khác nhau như nào?
-    // hook là gì? và các hook api của react useState(), useEffect()
     return (
       <>
         <Header />
@@ -69,11 +55,7 @@ class Main extends Component {
               path="/bangluong"
               component={() => <Bangluong staffs={this.state.staffs} />}
             />
-            <Route
-              exact
-              path="/nhanvien/:staffName"
-              component={() => <onSearch staffs={this.state.staffs} />}
-            />
+            
 
             <Redirect to="/nhanvien" />
           </Switch>
