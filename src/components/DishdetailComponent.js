@@ -1,17 +1,19 @@
-import React, { Component } from "react";
+import React, { Component,useState } from "react";
 import {
   Card,
   CardImg,
   CardImgOverlay,
   CardText,
   CardBody,
-  CardTitle,
+  CardTitle,Modal, ModalBody,ModalHeader, Button
 } from "reactstrap";
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 const  DishDetail = (props) => {
-  
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
     if (props.dish != null) {
       return (
         <div className="container">
@@ -31,10 +33,17 @@ const  DishDetail = (props) => {
                 <RenderDish dish={props.dish} />
             </div>
             <div className="col-12 col-md-5 m-1">
-                <RenderComments comments={props.comments} />
+              <RenderComments comments={props.comments} />
+               <Button outline onClick={toggle}>Submit Comments</Button>
             </div>
           </div>
+          <Modal isOpen={modal} toggle={toggle}>
+                <ModalBody >Submit </ModalBody>
+                <ModalHeader></ModalHeader>
+
+              </Modal>
         </div>
+        
       );
     } else return <div></div>;
   
