@@ -2,7 +2,6 @@ import React, {  useEffect, useState } from "react";
 import {
   Card,
   CardImg,
- 
   CardTitle,
   Breadcrumb,
   BreadcrumbItem,
@@ -44,23 +43,23 @@ const StaffList = (props) => {
   return (
     <div className="container">
       <div className="row mt-3">
-        <div className="col-md-3">
+        <div className="col-md-3  ">
           <Breadcrumb>
             <BreadcrumbItem>
               <Link to="/nhanvien">Nhân viên </Link>
             </BreadcrumbItem>
           </Breadcrumb>
         </div>
-        <div className="col-md-6 col-12 offset-3">
+        <div className="col-md-6 mt-1 ">
           <Row className="form-group">
-            <Col md={10}>
+            <Col >
               <Input
                 type="text"
                 className="form-control"
                 onChange={(e) => setTextSearch(e.target.value)}
               ></Input>
             </Col>
-            <Col md={2}>
+            <Col  >
               
               <Button color="primary" type="button" onClick={search}>
                 Tìm
