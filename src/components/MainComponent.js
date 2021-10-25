@@ -38,14 +38,19 @@ class Main extends Component {
   render() {
     
     const HomePage = () => {
+    
       return(
           <Home 
               dish={this.props.dishes.filter((dish) => dish.featured)[0]}
-              promotion={this.props.promotions.filter((promo) => promo.featured)[0]}
+              promotion={this.props?.promotions?.filter((promo) => promo.featured)[0]}
+              
               leader={this.props.leaders.filter((leader) => leader.featured)[0]}
           />
+          
       );
+      console.log(promotion);
     }
+    
     const DishWithId = ({match}) => {
       return(
           <DishDetail dish={this.props.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
@@ -54,6 +59,7 @@ class Main extends Component {
     };
     return (
       <div>
+        
         <Header />
         <div>
           <Switch>

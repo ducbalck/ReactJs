@@ -1,7 +1,7 @@
 import {createStore, combineReducers} from 'redux';
 import { Dishes } from './dishes';
 import { Comments } from './comments';
-import { Promotions } from './promotions';
+import { Promotions } from './Promotions';
 import { Leaders } from './leaders';
 
 export const ConfigureStore = () => {
