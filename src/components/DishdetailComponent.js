@@ -2,18 +2,29 @@ import React, { Component,useState } from "react";
 import {
   Card,
   CardImg,
-  CardImgOverlay,
+
   CardText,
   CardBody,
-  CardTitle,Modal, ModalBody,ModalHeader, Button
+  CardTitle,Modal, ModalBody,ModalHeader
 } from "reactstrap";
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem,
+  Button, Row, Col, Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Control, LocalForm, Errors } from 'react-redux-form';
+
+
+const maxLength = (len) => (val) => !(val) || (val.length <= len);
+const minLength = (len) => (val) => val && (val.length >= len);
 
 const  DishDetail = (props) => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+  const handleSubmit= (values) => {
+    console.log('Current State is: ' + JSON.stringify(values));
+    alert('Current State is: ' + JSON.stringify(values));
+    // event.preventDefault();
+  };
     if (props.dish != null) {
       return (
         <div className="container">
@@ -37,12 +48,71 @@ const  DishDetail = (props) => {
                <Button outline onClick={toggle}>Submit Comments</Button>
             </div>
           </div>
+          <div className="row">
           <Modal isOpen={modal} toggle={toggle}>
                 <ModalBody >Submit </ModalBody>
-                <ModalHeader></ModalHeader>
+                <ModalHeader>
+                <LocalForm onSubmit={(values) =>handleSubmit(values)}>
+                <Row className="form-group">
+                  <Label htmlFor="raiting" md={12}>Raiting</Label>
+                                <Col md={12}>
+                                    <Control.select model=".raiting" name="raiting"
+                                        className="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3.</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        
+                                    </Control.select>
+                                </Col>
+                            </Row>
+                    <Row className="form-group">
+                      
+                                <Label htmlFor="yourname" md={12}>Your Name</Label>
+                                <Col md={12}>
+                                    <Control.text model=".yourname" id="yourname" name="yourname"
+                                        placeholder="Your Name"
+                                        className="form-control"
+                                        validators={{
+                                             minLength: minLength(3), maxLength: maxLength(15)
+                                        }}
+                                         />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".yourname"
+                                        show="touched"
+                                        messages={{
+                                            
+                                            minLength: 'Must be greater than 2 characters',
+                                            maxLength: 'Must be 15 characters or less'
+                                        }}
+                                     />
+                                </Col>
+                            </Row>
+                            
+                            <Row className="form-group">
+                                <Label htmlFor="contact" md={12}>Contact</Label>
+                                <Col md={12}>
+                                    <Control.textarea model=".contact" id="contact" name="contact"
+                                        rows="12"
+                                        className="form-control" />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Col md={{size:10, offset: 2}}>
+                                    <Button type="submit" color="primary">
+                                    Submit
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </LocalForm>
+                </ModalHeader>
 
               </Modal>
+          </div>
         </div>
+        
         
       );
     } else return <div></div>;
