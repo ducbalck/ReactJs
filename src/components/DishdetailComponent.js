@@ -101,7 +101,7 @@ function RenderComments({comments, addComment, dishId}) {
         this.toggleModal = this.toggleModal.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-          
+            isNAvOpen :false,
             isModalOpen: false
         };
       }
@@ -120,7 +120,7 @@ function RenderComments({comments, addComment, dishId}) {
           <Button outline onClick={this.toggleModal}>Submit Comments</Button>
           <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
         <ModalBody >Submit </ModalBody>
-        <ModalHeader>
+        <ModalHeader toggle={this.state.toggleModal}>
         <LocalForm onSubmit={(values) =>this.handleSubmit(values)}>
         <Row className="form-group">
           <Label htmlFor="raiting" md={12}>Raiting</Label>
