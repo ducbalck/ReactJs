@@ -9,7 +9,7 @@ import {
   Input,
   Button,
   Row,
-  Modal, Col, Label,ModalHeader
+  Modal, Col, Label,ModalHeader,ModalBody
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Control, LocalForm, Errors } from 'react-redux-form';
@@ -18,7 +18,7 @@ const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
 
-class staffForm extends Component {
+class StaffForm extends Component {
 
     constructor(props) {
         super(props);
@@ -40,12 +40,13 @@ class staffForm extends Component {
     }
   render(){ 
     return(<div>
-    <Button outline onClick={this.toggleModal}><i class="fa fa-plus-square" aria-hidden="true"></i></Button>
+    <Button outline onClick={this.toggleModal}><i class="fa fa-plus" aria-hidden="true"></i></Button>
     <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-    <ModalHeader toggle={this.state.toggleModal}>
+    <ModalHeader>Thêm nhân viên</ModalHeader>
+    <ModalBody toggle={this.state.toggleModal}>
       <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
         <Row className="form-group">
-          <Label htmlFor="ten" md={2}>First Name</Label>
+          <Label htmlFor="ten" md={2}>Tên</Label>
           <Col md={10}>
             <Control.text model=".ten" id="ten" name="ten"
                           
@@ -69,7 +70,7 @@ class staffForm extends Component {
           <Label htmlFor="ngaysinh" md={2}>Ngày Sinh</Label>
           <Col md={10}>
             <Control.text model=".ngaysinh" id="ngaysinh" name="ngaysinh"
-                          
+               type="date"           
               className="form-control"
               validators={{
               required
@@ -89,7 +90,7 @@ class staffForm extends Component {
           <Label htmlFor="ngayvaotongty" md={2}>Ngày vào công ty</Label>
           <Col md={10}>
             <Control.text model=".ngayvaotongty" id="ngayvaotongty" name="ngayvaotongty"
-                          
+                type="date"            
               className="form-control"
               validators={{
               required
@@ -106,8 +107,9 @@ class staffForm extends Component {
           </Col>
         </Row>
         <Row>
-          <Col md={10}>
           <Label htmlFor="phongban" md={2}>Phòng ban</Label>
+          <Col md={10}>
+          
             <Control.select model=".phongban" name="phongban"
               className="form-control">
               <option>Sale</option>
@@ -122,7 +124,7 @@ class staffForm extends Component {
           <Label htmlFor="hesoluong" md={2}>Hệ số lương</Label>
           <Col md={10}>
             <Control.text model=".hesoluong" id="hesoluong" name="hesoluong"
-                          
+              placeholder="1"    
               className="form-control"
               />
           </Col>
@@ -131,7 +133,7 @@ class staffForm extends Component {
           <Label htmlFor="ngaynghi" md={2}>Số ngày nghỉ còn lại</Label>
           <Col md={10}>
             <Control.text model=".ngaynghi" id="ngaynghi" name="ngaynghi"
-                          
+                  placeholder="0"        
               className="form-control"
               />
           </Col>
@@ -140,7 +142,7 @@ class staffForm extends Component {
           <Label htmlFor="ngaylamthem" md={2}>Số ngày đã làm thêm</Label>
           <Col md={10}>
             <Control.text model=".ngaylamthem" id="ngaylamthem" name="ngaylamthem"
-                          
+                     placeholder="0"     
               className="form-control"
               />
           </Col>
@@ -155,7 +157,7 @@ class staffForm extends Component {
         </Row>
       
       </LocalForm>
-      </ModalHeader>
+      </ModalBody>
       </Modal>
       </div>);
     
@@ -192,27 +194,33 @@ class StaffList extends Component {
     return (
       <div className="container">
         <div className="row mt-3">
-          <div className="col-md-3  ">
-            <Breadcrumb>
+          <div className="col-6 col-md-3  ">
+            
+              <Breadcrumb>
               <BreadcrumbItem>
                 <Link to="/nhanvien">Nhân viên </Link>
               </BreadcrumbItem>
             </Breadcrumb>
+            
+            
           </div>
-          <div className="col-md-3  " >
-            <staffForm/>
+          <div className="col-6 col-md-3 mt-1 " >
+            <StaffForm/>
           </div>
-          <div className="col-md-3 mt-1 ">
-            <Form onSubmit={this.search}>
-              <Input
+          <div className="col-6 col-md-6 mt-1 ">
+            <Form onSubmit={this.search} >
+              <Row >
+              <Input 
                 type="text"
                 id="timkiem"
                 name="timkiem"
                 innerRef={(input) => (this.timkiem = input)}
               />
-              <Button type="submit" value="submit" color="primary">
+              <Button 
+               type="submit" value="submit" color="primary" >
                 Tìm
               </Button>
+              </Row>
             </Form>
           </div>
         </div>
