@@ -46,8 +46,8 @@ class StaffForm extends Component {
     <ModalBody toggle={this.state.toggleModal}>
       <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
         <Row className="form-group">
-          <Label htmlFor="ten" md={2}>Tên</Label>
-          <Col md={10}>
+          <Label htmlFor="ten" md={4}>Tên</Label>
+          <Col md={8}>
             <Control.text model=".ten" id="ten" name="ten"
                           
               className="form-control"
@@ -67,8 +67,8 @@ class StaffForm extends Component {
           </Col>
         </Row>
         <Row className="form-group">
-          <Label htmlFor="ngaysinh" md={2}>Ngày Sinh</Label>
-          <Col md={10}>
+          <Label htmlFor="ngaysinh" md={4}>Ngày Sinh</Label>
+          <Col md={8}>
             <Control.text model=".ngaysinh" id="ngaysinh" name="ngaysinh"
                type="date"           
               className="form-control"
@@ -87,8 +87,8 @@ class StaffForm extends Component {
           </Col>
         </Row>
         <Row className="form-group">
-          <Label htmlFor="ngayvaotongty" md={2}>Ngày vào công ty</Label>
-          <Col md={10}>
+          <Label htmlFor="ngayvaotongty" md={4}>Ngày vào công ty</Label>
+          <Col md={8}>
             <Control.text model=".ngayvaotongty" id="ngayvaotongty" name="ngayvaotongty"
                 type="date"            
               className="form-control"
@@ -107,8 +107,8 @@ class StaffForm extends Component {
           </Col>
         </Row>
         <Row>
-          <Label htmlFor="phongban" md={2}>Phòng ban</Label>
-          <Col md={10}>
+          <Label htmlFor="phongban" md={4}>Phòng ban</Label>
+          <Col md={8}>
           
             <Control.select model=".phongban" name="phongban"
               className="form-control">
@@ -120,9 +120,9 @@ class StaffForm extends Component {
             </Control.select>
           </Col>
         </Row>
-        <Row className="form-group">
-          <Label htmlFor="hesoluong" md={2}>Hệ số lương</Label>
-          <Col md={10}>
+        <Row className="form-group mt-4">
+          <Label htmlFor="hesoluong" md={4}>Hệ số lương</Label>
+          <Col md={8}>
             <Control.text model=".hesoluong" id="hesoluong" name="hesoluong"
               placeholder="1"    
               className="form-control"
@@ -130,8 +130,8 @@ class StaffForm extends Component {
           </Col>
         </Row>
         <Row className="form-group">
-          <Label htmlFor="ngaynghi" md={2}>Số ngày nghỉ còn lại</Label>
-          <Col md={10}>
+          <Label htmlFor="ngaynghi" md={4}>Số ngày nghỉ còn lại</Label>
+          <Col md={8}>
             <Control.text model=".ngaynghi" id="ngaynghi" name="ngaynghi"
                   placeholder="0"        
               className="form-control"
@@ -139,8 +139,8 @@ class StaffForm extends Component {
           </Col>
         </Row>
         <Row className="form-group">
-          <Label htmlFor="ngaylamthem" md={2}>Số ngày đã làm thêm</Label>
-          <Col md={10}>
+          <Label htmlFor="ngaylamthem" md={4}>Số ngày đã làm thêm</Label>
+          <Col md={8}>
             <Control.text model=".ngaylamthem" id="ngaylamthem" name="ngaylamthem"
                      placeholder="0"     
               className="form-control"
@@ -151,7 +151,7 @@ class StaffForm extends Component {
         <Row className="form-group">
           <Col md={{size:10, offset: 2}}>
             <Button type="submit" color="primary">
-            Send Feedback
+            Thêm
             </Button>
           </Col>
         </Row>
@@ -194,7 +194,7 @@ class StaffList extends Component {
     return (
       <div className="container">
         <div className="row mt-3">
-          <div className="col-6 col-md-3  ">
+          <div className="col-10 col-md-2  ">
             
               <Breadcrumb>
               <BreadcrumbItem>
@@ -204,13 +204,13 @@ class StaffList extends Component {
             
             
           </div>
-          <div className="col-6 col-md-3 mt-1 " >
+          <div className="col-2 col-md-3 mt-1 " >
             <StaffForm/>
-          </div>
-          
+          </div >
+          <div className=" col-md-7 mt-1">
             <Form onSubmit={this.search} >
               <div className ="row" >
-              <div className=" col-6 col-md-10 mt-1 ">
+              <div className=" col-10 col-md-10 mt-1  ">
                 <Input 
                 type="text"
                 id="timkiem"
@@ -218,7 +218,7 @@ class StaffList extends Component {
                 innerRef={(input) => (this.timkiem = input)}
                 />
               </div>
-              <div className=" col-6 col-md-2 mt-1 ">
+              <div className=" col-2 col-md-2 mt-1 ">
                 <Button 
                type="submit" value="submit" color="primary" >
                 Tìm
@@ -228,7 +228,7 @@ class StaffList extends Component {
               
               </div>
             </Form>
-          
+          </div>
         </div>
         <div className="row">
           {this.state.staffs.map((staff) => (
