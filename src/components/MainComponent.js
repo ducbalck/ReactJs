@@ -2,11 +2,20 @@ import React, { Component } from "react";
 import StaffList from "./StaffListComponent";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
-import { Switch, Route, Redirect } from "react-router-dom";
+
 import { STAFFS, DEPARTMENTS } from "../shared/staffs";
 import StaffDetail from "./StaffDetail";
 import Phongban from "./phongban";
 import Bangluong from "./bangluong";
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => {
+  return {
+    staffs: state.staffs,
+    departments: state.departments
+  }
+}
 
 class Main extends Component {
   constructor(props) {
@@ -67,4 +76,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default withRouter(connect(mapStateToProps)(Main));

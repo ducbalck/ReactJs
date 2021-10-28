@@ -207,22 +207,28 @@ class StaffList extends Component {
           <div className="col-6 col-md-3 mt-1 " >
             <StaffForm/>
           </div>
-          <div className="col-6 col-md-6 mt-1 ">
+          
             <Form onSubmit={this.search} >
-              <Row >
-              <Input 
+              <div className ="row" >
+              <div className=" col-6 col-md-10 mt-1 ">
+                <Input 
                 type="text"
                 id="timkiem"
                 name="timkiem"
                 innerRef={(input) => (this.timkiem = input)}
-              />
-              <Button 
+                />
+              </div>
+              <div className=" col-6 col-md-2 mt-1 ">
+                <Button 
                type="submit" value="submit" color="primary" >
                 Tìm
               </Button>
-              </Row>
+              </div>
+              
+              
+              </div>
             </Form>
-          </div>
+          
         </div>
         <div className="row">
           {this.state.staffs.map((staff) => (
