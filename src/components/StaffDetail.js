@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Card, CardImg,CardText,
     CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import dateFormat from 'dateformat'; 

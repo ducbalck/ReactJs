@@ -2,29 +2,24 @@ import React, { Component } from "react";
 import StaffList from "./StaffListComponent";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
-
-import { STAFFS, DEPARTMENTS } from "../shared/staffs";
 import StaffDetail from "./StaffDetail";
 import Phongban from "./phongban";
 import Bangluong from "./bangluong";
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
-import { connect } from 'react-redux';
-
-const mapStateToProps = state => {
-  return {
-    staffs: state.staffs,
-    departments: state.departments
-  }
-}
+import { Switch, Route, Redirect } from "react-router-dom";
+import { DEPARTMENTS, STAFFS } from "../shared/staffs";
 
 class Main extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       staffs: STAFFS,
       departments: DEPARTMENTS,
     };
+    this.addstaff = this.addstaff.bind(this)
+  }
+
+  addstaff(staff) {
+    this.setState({staffs : STAFFS.concat([{...staff, ...{id: this.state.staffs.length}}])})
   }
 
   render() {
@@ -48,9 +43,7 @@ class Main extends Component {
             <Route
               exact
               path="/nhanvien"
-              component={() => (
-                <StaffList staffs={this.state.staffs} />
-              )}
+              component={() => <StaffList staffs={this.state.staffs} addStaff={this.addstaff} />}
             />
             <Route exact path="/nhanvien/:staffId" component={StaffWithId} />
             <Route
@@ -64,7 +57,6 @@ class Main extends Component {
               path="/bangluong"
               component={() => <Bangluong staffs={this.state.staffs} />}
             />
-            
 
             <Redirect to="/nhanvien" />
           </Switch>
@@ -76,4 +68,4 @@ class Main extends Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Main));
+export default Main;
