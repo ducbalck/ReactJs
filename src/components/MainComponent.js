@@ -21,21 +21,24 @@ class Main extends Component {
   constructor(props) {
     super(props);
     
-    
-    // this.addstaff = this.addstaff.bind(this)
+    this.state = {
+      staffs: STAFFS
+    }
+    this.addstaff = this.addstaff.bind(this)
     
  
   }
-  // addstaff(staff) {
-  //   this.setState({staffs : STAFFS.concat([{...staff, ...{id: this.state.staffs.length}}])})
-  // }
+
+  addstaff(staff) {
+    this.setState({staffs : this.state.staffs.concat([{...staff, ...{id: this.state.staffs.length}}])})
+  }
 
   render() {
     const StaffWithId = ({ match }) => {
       return (
         <StaffDetail
           staff={
-            this.props.staffs.filter(
+            this.state.staffs.filter(
               (staff) => staff.id === parseInt(match.params.staffId, 10)
             )[0]
           }
@@ -52,7 +55,7 @@ class Main extends Component {
               exact
               path="/nhanvien"
               component={() => (
-                <StaffList staffs={this.props.staffs} addStaff={this.props.addStaff} />
+                <StaffList staffs={this.state.staffs} addstaff={this.addstaff} />
               )}
             />
             <Route exact path="/nhanvien/:staffId" component={StaffWithId} />
@@ -65,7 +68,7 @@ class Main extends Component {
 
             <Route
               path="/bangluong"
-              component={() => <Bangluong staffs={this.props.staffs} />}
+              component={() => <Bangluong staffs={this.state.staffs} />}
             />
             
 
