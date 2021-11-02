@@ -1,11 +1,13 @@
 import React from "react" ;
 import { Breadcrumb, BreadcrumbItem,Card,CardFooter,CardText,CardTitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import { Loading } from './LoadingComponent';
 
 const Bangluong= (props)=>{
-    const luong = props.staffs.map((staff)=>{
+  
+    const luong = props.staffs.staffs.map((staff)=>{
         return(
+            
            
             <div className="col-lg-4 col-sm-6 col-12 mt-2 ">
                 <Card key={staff.id}>
@@ -21,9 +23,27 @@ const Bangluong= (props)=>{
             </div>
         );
     })
+    if (props.isLoading) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+    else if (props.errMess) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <h4>{this.props.errMess}</h4>
+                </div> 
+            </div>
+        );
+    }else
+  
     return(
-         
-        
+          
             <div className="container">
                 <div className="row">
                     <Breadcrumb>
@@ -35,7 +55,8 @@ const Bangluong= (props)=>{
                     {luong}
                 </div>
             </div>
-        );
+        ); 
     
 }
+        
 export default Bangluong ;

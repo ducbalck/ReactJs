@@ -3,14 +3,29 @@ import { Card, CardImg,CardText,
     CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import dateFormat from 'dateformat'; 
 import { Link } from 'react-router-dom';
+import { Loading } from './LoadingComponent';
+
 
     const  StaffDetail = (props) => {
-        
-        if (props.staff != null) {
-            
-            
-        
-          return (
+        if (props.isLoading) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if (props.errMess) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <h4>{props.errMess}</h4>
+                    </div> 
+                </div>
+            );
+        }else if (props.staff != null) {
+           return (
           <div className="container">
           <div className="row">
               <Breadcrumb>
@@ -21,7 +36,7 @@ import { Link } from 'react-router-dom';
           </div>
           <div className="row">
                     <div className="col-12 col-lg-3 col-sm-4" > 
-                       <CardImg width="100%" src={props.staff.image} alt={props.staff.name} /> 
+                       <CardImg width="100%" src="../assets/images/alberto.png" alt={props.staff.name} /> 
                     </div>
                     <div className="col-12 col-lg-9  col-sm-8 " >
                         
@@ -29,7 +44,7 @@ import { Link } from 'react-router-dom';
                           <CardTitle>Họ và tên :{props.staff.name}</CardTitle>
                           <CardText>Ngày sinh : {dateFormat(props.staff.startDate,"dd/mm/yyyy")}</CardText>         
                           <CardText>Ngày vào công ty : {dateFormat(props.staff.doB,"dd/mm/yyyy")}</CardText>                 
-                          <CardText>Phòng ban : {props.staff.department.name}</CardText> 
+                          <CardText>Phòng ban : {props.staff.departmentId}</CardText> 
                           <CardText>Ngày nghỉ còn lại : {props.staff.annualLeave}</CardText>
                           <CardText>Số ngày đã làm thêm : {props.staff.overTime}</CardText>               
                         

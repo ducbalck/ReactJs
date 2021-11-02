@@ -18,6 +18,7 @@ import {
 import { Link } from "react-router-dom";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { DEPARTMENTS } from "../shared/staffs";
+import { Loading } from './LoadingComponent';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -52,7 +53,7 @@ class StaffForm extends Component {
 
       image: "/assets/images/alberto.png",
     };
-    this.props.addstaff(newStaff);
+    this.props.postStaff(newStaff);
     this.toggleModal();
   }
   render() {
@@ -224,7 +225,7 @@ class StaffList extends Component {
     };
     this.search = this.search.bind(this);
   }
-
+  
   search(e) {
     e.preventDefault();
     const tim = this.props.staffs.filter((item) =>
@@ -233,18 +234,50 @@ class StaffList extends Component {
 
     this.setState({ staffs: this.timkiem.value ? tim : this.props.staffs });
   }
-
+  xoa=(staff)=>{
+    console.log ( staff)
+  }
   render() {
-    const renderStaffItem = (staff) => (
-      <Card>
+    const renderStaffItem = (staff ) => (
+      <Card >
         <Link to={`/nhanvien/${staff.id}`}>
-          <CardImg width="100%" src={staff.image} alt={staff.name} />
+          <CardImg width="100%" src="./assets/images/alberto.png" alt={staff.name} />
         </Link>
         <CardTitle className=" text-center">{staff.name}</CardTitle>
+        
       </Card>
     );
-
+    const menu =this.state.staffs.map((staff) => {
+    
+      
+      return (
+        <div className="col-6 col-lg-2 col-sm-4 mt-1" key={staff.id}>
+          {renderStaffItem(staff)}
+          <Button onClick={() => this.xoa(staff)}>xoá</Button>
+        </div>
+        
+      );
+    });
+    if (this.props.isLoading) {
+      return(
+          <div className="container">
+              <div className="row">            
+                  <Loading />
+              </div>
+          </div>
+      );
+  }
+  else if (this.props.errMess) {
+      return(
+          <div className="container">
+              <div className="row">            
+                  <h4>{this.props.errMess}</h4>
+              </div> 
+          </div>
+      );
+  }else
     return (
+      
       <div className="container">
         <div className="row mt-3">
           <div className="col-10 col-md-2  ">
@@ -255,7 +288,7 @@ class StaffList extends Component {
             </Breadcrumb>
           </div>
           <div className="col-2 col-md-3 mt-1 ">
-            <StaffForm addstaff={this.props.addstaff} />
+            <StaffForm postStaff={this.props.postStaff} />
           </div>
           <div className=" col-md-7 mt-1">
             <Form onSubmit={this.search}>
@@ -278,11 +311,8 @@ class StaffList extends Component {
           </div>
         </div>
         <div className="row">
-          {this.state.staffs.map((staff) => (
-            <div className="col-6 col-lg-2 col-sm-4 mt-1" key={staff.id}>
-              {renderStaffItem(staff)}
-            </div>
-          ))}
+         
+          {menu}
         </div>
       </div>
     );
