@@ -39,9 +39,7 @@ class StaffForm extends Component {
     });
   }
   handleSubmit(values) {
-    // const department = DEPARTMENTS.filter(
-    //   (x) => x.id === values.department
-    // )[0];
+
     const newStaff = {
       name: values.name,
       doB: values.doB,

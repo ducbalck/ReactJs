@@ -1,16 +1,16 @@
-import { DEPARTMENTS } from "../shared/staffs";
+
 import dateFormat from "dateformat";
 import { Link } from "react-router-dom";
 import { Loading } from "./LoadingComponent";
 import React, { Component } from "react";
 import {
-  Card,
+  
   CardImg,
   CardTitle,
   Breadcrumb,
   BreadcrumbItem,
   CardText,
-  Input,
+  
   Button,
   Row,
   Modal,

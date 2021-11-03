@@ -7,7 +7,6 @@ import Phongban from "./phongban";
 import Bangluong from "./bangluong";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-
 import {
   postStaff,deleteStaff,editStaff,
   fetchDepartments,
