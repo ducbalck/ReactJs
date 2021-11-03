@@ -3,7 +3,22 @@ import dateFormat from "dateformat";
 import { Link } from "react-router-dom";
 import { Loading } from "./LoadingComponent";
 import React, { StaffediForm } from "react";
-
+import {
+  
+    CardImg,
+    CardTitle,
+    Breadcrumb,
+    BreadcrumbItem,
+    CardText,
+    
+    Button,
+    Row,
+    Modal,
+    Col,
+    Label,
+    ModalHeader,
+    ModalBody,
+  } from "reactstrap";
 
 const StaffDetail = (props) => {
   console.log("props.departments", props.staff);
