@@ -9,7 +9,7 @@ import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import {
-  postStaff,
+  postStaff,deleteStaff,editStaff,
   fetchDepartments,
   fetchStaffs,
 } from "../redux/ActionCreators";
@@ -22,8 +22,9 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => ({
+  editStaff: (staff) => dispatch(editStaff(staff)),
   postStaff: (staff) => dispatch(postStaff(staff)),
-
+  deleteStaff: (staff) => dispatch(deleteStaff(staff)),
   fetchStaffs: () => {
     dispatch(fetchStaffs());
   },
@@ -41,9 +42,7 @@ class Main extends Component {
     this.props.fetchDepartments();
   }
 
-  // postStaff(staff) {
-  //   this.setState({staffs : this.state.staffs.concat([{...staff, ...{id: this.state.staffs.length}}])})
-  // }
+
 
   render() {
     const StaffWithId = ({ match }) => {
@@ -56,7 +55,8 @@ class Main extends Component {
           }
           isLoading={this.props.staffs.isLoading}
           errMess={this.props.staffs.errMess}
-         
+          departments={this.props.departments.departments}
+          editStaff={this.props.editStaff}
 
         />
       );
@@ -65,9 +65,15 @@ class Main extends Component {
       return (
         <Danhsachphongban
           staffs={this.props.staffs.staffs.filter(
-            (staff) => staff.departments.id === match.params.departmentsId
+            (staff) => staff.departmentId === match.params.departmentsId
+          )}
+          isLoading={this.props.staffs.isLoading}
+          errMess={this.props.staffs.errMess}
+          departments={this.props.departments.departments}
+          isLoading={this.props.departments.isLoading}
+          errMess={this.props.departments.errMess}
           
-            )} />
+          />
       );
     };
 
@@ -85,6 +91,9 @@ class Main extends Component {
                   isLoading={this.props.staffs.isLoading}
                   errMess={this.props.staffs.errMess}
                   postStaff={this.props.postStaff}
+                  deleteStaff={this.props.deleteStaff}
+                  
+                  
                 />
               )}
             />

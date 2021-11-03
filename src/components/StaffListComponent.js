@@ -39,15 +39,15 @@ class StaffForm extends Component {
     });
   }
   handleSubmit(values) {
-    const department = DEPARTMENTS.filter(
-      (x) => x.id === values.department
-    )[0];
+    // const department = DEPARTMENTS.filter(
+    //   (x) => x.id === values.department
+    // )[0];
     const newStaff = {
       name: values.name,
       doB: values.doB,
       salaryScale: values.salaryScale,
       startDate: values.startDate,
-      department: department,
+      departmentId: values.department,
       annualLeave: values.annualLeave,
       overTime: values.overTime,
 
@@ -234,8 +234,8 @@ class StaffList extends Component {
 
     this.setState({ staffs: this.timkiem.value ? tim : this.props.staffs });
   }
-  xoa=(staff)=>{
-    console.log ( staff)
+  xoa=(staffId)=>{
+    this.props.deleteStaff(staffId);
   }
   render() {
     const renderStaffItem = (staff ) => (
@@ -253,7 +253,7 @@ class StaffList extends Component {
       return (
         <div className="col-6 col-lg-2 col-sm-4 mt-1" key={staff.id}>
           {renderStaffItem(staff)}
-          <Button onClick={() => this.xoa(staff)}>xoá</Button>
+          <Button onClick={() => this.xoa(staff.id)}>xoá</Button>
         </div>
         
       );

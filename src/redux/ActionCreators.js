@@ -2,22 +2,31 @@ import * as ActionTypes from "./ActionTypes";
 
 import { baseUrl } from "../shared/baseUrl";
 
-// export const xoastaff =(staff) =>{
-//   return axios.delete (baseUrl+ "staff")
-// }
-export const addStaff = (staff) => ({
-  type: ActionTypes.ADD_STAFF,
-  payload: staff,
-});
+
+export const deleteStaff =(staffId)=>(dispatch)=>{
+  dispatch(staffsLoading());
+  
+  return fetch(baseUrl + "staffs/"+staffId, {
+    method: "DELETE",
+   
+    headers: {
+      "Content-Type": "application/json",
+    },
+   
+  })
+      .then((response) => response.json())
+      .then((response) => dispatch(addStaffs(response)));
+  };
+
 export const postStaff =
-  ({ name, doB, salaryScale, startDate, department, annualLeave, overTime }) =>
+  ({ name, doB, salaryScale, startDate, departmentId, annualLeave, overTime }) =>
   (dispatch) => {
     const newstaff = {
       name: name,
       doB: doB,
       salaryScale: salaryScale,
       startDate: startDate,
-      department: department,
+      departmentId: departmentId,
       annualLeave: annualLeave,
       overTime: overTime,
     };
@@ -31,7 +40,7 @@ export const postStaff =
       credentials: "same-origin",
     })
       .then((response) => response.json())
-      .then((response) => dispatch(addStaff(response)));
+      .then((response) => dispatch(addStaffs(response)));
   };
 
 export const fetchStaffs = () => (dispatch) => {
@@ -77,3 +86,28 @@ export const addDepartments = (departments) => ({
   type: ActionTypes.ADD_DEPARTMENTS,
   payload: departments,
 });
+export const editStaff =
+ ({id, name, doB, salaryScale, startDate, departmentId, annualLeave, overTime }) =>
+  (dispatch) => {
+    const staff = {
+      id:id,
+      name: name,
+      doB: doB,
+      salaryScale: salaryScale,
+      startDate: startDate,
+      departmentId: departmentId,
+      annualLeave: annualLeave,
+      overTime: overTime,
+    };
+
+    return fetch(baseUrl + "staffs", {
+      method: "PATCH",
+      body: JSON.stringify(staff),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "same-origin",
+    })
+      .then((response) => response.json())
+      .then((response) => dispatch(addStaffs(response)));
+};

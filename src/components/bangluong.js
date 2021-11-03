@@ -13,7 +13,7 @@ const Bangluong= (props)=>{
                 <Card key={staff.id}>
                 <CardTitle>{staff.name}</CardTitle>
                 <CardText className="ml-3">Mã nhân viên : {(staff.id)} </CardText>
-                <CardText className="ml-3">Hệ số lương :{(staff.salaryScale).toFixed(0)}</CardText>
+                <CardText className="ml-3">Hệ số lương :{(staff.salaryScale)}</CardText>
                 <CardText className="ml-3">Số giờ làm thêm :{staff.overTime}</CardText>
                 
                 <CardFooter className="ml-3 mr-3 ">Lương :{(parseFloat(staff.salaryScale).toFixed(0)*3000000)+(parseFloat(staff.overTime)*200000)}</CardFooter>
@@ -36,7 +36,7 @@ const Bangluong= (props)=>{
         return(
             <div className="container">
                 <div className="row">            
-                    <h4>{this.props.errMess}</h4>
+                    <h4>{props.errMess}</h4>
                 </div> 
             </div>
         );

@@ -7,7 +7,7 @@ const Danhsachphongban = (props) => {
     const RenderStaffItem = (staff ) => (
         <Card>
           <Link to={`/nhanvien/${staff.id}`}>
-            <CardImg width="100%" src={staff.image} alt={staff.name} />
+            <CardImg width="100%" src="../assets/images/alberto.png" alt={staff.name} />
           </Link>
           <CardTitle className=" text-center">{staff.name}</CardTitle>
         </Card>
