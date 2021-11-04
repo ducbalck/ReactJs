@@ -5,16 +5,14 @@ import { Loading } from './LoadingComponent';
 
 const Phongban = (props) => {
   const departments = props.departments && props.departments.length>0 && props.departments.map((department, index) => (
-    <div key={index.toString()} className="col-lg-4 col-sm-6 col-12 mt-2" >
-      
+    <div key={index.toString()} className="col-lg-4 col-sm-6 col-12 mt-2" > 
       <Card  >
         <Link to={`/phongbans/${department.id}`}>
           <CardTitle><div>{department.name}</div></CardTitle>
         </Link>
         <CardText className="ml-3"><div>Số lượng nhân viên : {department.numberOfStaff}</div></CardText>
-      
+
       </Card>
-      
     </div>
 
   ));

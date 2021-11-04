@@ -40,9 +40,6 @@ class Main extends Component {
     this.props.fetchStaffs();
     this.props.fetchDepartments();
   }
-
-
-
   render() {
     const StaffWithId = ({ match }) => {
       return (
@@ -56,7 +53,6 @@ class Main extends Component {
           errMess={this.props.staffs.errMess}
           departments={this.props.departments.departments}
           editStaff={this.props.editStaff}
-
         />
       );
     };
@@ -71,7 +67,6 @@ class Main extends Component {
           departments={this.props.departments.departments}
           isLoading={this.props.departments.isLoading}
           errMess={this.props.departments.errMess}
-          
           />
       );
     };
