@@ -59,4 +59,3 @@ function RenderComments({ dish }) {
     } else return null;
   }
   export default DishDetail;
-  
