@@ -40,19 +40,7 @@ class StaffediForm extends Component {
     });
   }
   handleSubmit(values) {
-    const newStaff = {
-      id: this.props.staff.id,
-      name: values.name,
-      doB: values.doB,
-      startDate: values.startDate,
-      salaryScale: values.salaryScale,
-
-      departmentId: values.departmentId,
-      annualLeave: values.annualLeave,
-      overTime: values.overTime,
-
-      image: "/assets/images/alberto.png",
-    };
+ 
     this.props.editStaff(newStaff);
     this.toggleModal();
   }
