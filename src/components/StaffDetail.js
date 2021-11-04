@@ -1,4 +1,3 @@
-
 import dateFormat from "dateformat";
 import { Link } from "react-router-dom";
 import { Loading } from "./LoadingComponent";
